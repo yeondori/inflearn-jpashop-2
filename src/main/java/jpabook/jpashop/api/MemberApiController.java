@@ -6,8 +6,11 @@ import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.service.MemberService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -23,6 +26,12 @@ public class MemberApiController {
      * - 엔티티가 변경되면 API 스펙이 변한다.
      * 결론
      * - API 요청 스펙에 맞추어 별도의 DTO를 파라미터로 받는다. */
+
+    @GetMapping("/api/v1/members")
+    public List<Member> membersv1() {
+        return memberService.findMembers();
+    }
+
     @PostMapping("/api/v1/members")
     public CreateMemberResponse saveMemberV1(@RequestBody @Valid Member member)
     {

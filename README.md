@@ -20,3 +20,4 @@
 섹션을 클릭하면 해당 강의 내용으로 이동할 수 있다.
 
 [섹션 1. API 개발 기본](docs/section01.md)
+[섹션 2. API 개발 고급 - 준비](docs/section02.md)

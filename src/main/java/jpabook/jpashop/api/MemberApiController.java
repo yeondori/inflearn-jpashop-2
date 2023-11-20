@@ -17,7 +17,7 @@ import java.util.List;
 public class MemberApiController {
     private final MemberService memberService;
     /**
-     * 등록 V1: 요청 값으로 Member 엔티티를 직접 받는다.
+     * V1: 요청 값으로 Member 엔티티를 직접 받는다.
      * 문제점
      * - 엔티티에 프레젠테이션 계층을 위한 로직이 추가된다.
      * - 엔티티에 API 검증을 위한 로직이 들어간다. (@NotEmpty 등등)
@@ -30,6 +30,28 @@ public class MemberApiController {
     @GetMapping("/api/v1/members")
     public List<Member> membersv1() {
         return memberService.findMembers();
+    }
+
+    @GetMapping("/api/v2/members")
+    public Result memberV2() {
+        List<Member> findMembers = memberService.findMembers();
+        List<MemberDto> collect = findMembers.stream()
+                .map(m -> new MemberDto(m.getName()))
+                .toList();
+
+        return new Result(collect);
+    }
+
+    @Data
+    @AllArgsConstructor
+    static class Result<T> {
+        private T data;
+    }
+
+    @Data
+    @AllArgsConstructor
+    static class MemberDto {
+        private String name;
     }
 
     @PostMapping("/api/v1/members")

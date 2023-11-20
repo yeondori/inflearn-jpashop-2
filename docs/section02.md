@@ -68,3 +68,54 @@ public class InitDb {
 ```
 
 @PostConstruct는 스프링 빈이 엮이고 나서 마지막에 스프링이 호출해준다. 참고로 init과 dbInit1은 스프링 라이프사이클 상 별도로 분리해주어야 한다.
+
+
+## OrderList.html 수정
+
+추가적으로, 기존 예제는 주문목록 조회 html부분에서 회원의 주문상품이 여러 개인 경우 제일 처음 주문한 주문상품에 대해서만 출력하고 있다.
+편의를 위해 html의 테이블 부분을 다음과 같이 수정해 주었다. 강의 내용과는 관계 없다!
+
+```html
+<table class="table table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>회원명</th>
+                <th>상품 이름</th>
+                <th>상품 주문가격</th>
+                <th>상품 주문수량</th>
+                <th>상태</th>
+                <th>일시</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${orders}">
+                <td th:text="${item.id}"></td>
+                <td th:text="${item.member.name}"></td>
+                <td>
+                    <div th:each="orderItem : ${item.orderItems}">
+                        <p th:text="${orderItem.item.name}"></p>
+                    </div>
+                </td>
+                <td>
+                    <div th:each="orderItem : ${item.orderItems}">
+                        <p th:text="${orderItem.orderPrice}"></p>
+                    </div>
+                </td>
+                <td>
+                    <div th:each="orderItem : ${item.orderItems}">
+                        <p th:text="${orderItem.count}"></p>
+                    </div>
+                </td>
+                <td th:text="${item.status}"></td>
+                <td th:text="${item.orderDate}"></td>
+                <td>
+                    <a th:if="${item.status.name() == 'ORDER'}" href="#" th:href="'javascript:cancel('+${item.id}+')'"
+                       class="btn btn-danger">CANCEL</a>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+```

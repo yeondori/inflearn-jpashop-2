@@ -21,3 +21,4 @@
 
 [섹션 1. API 개발 기본](docs/section01.md)
 [섹션 2. API 개발 고급 - 준비](docs/section02.md)
+[섹션 2. API 개발 고급 - 지연 로딩과 조회 성능 최적화](docs/section03.md)

@@ -71,6 +71,16 @@ public class OrderApiController {
         return result;
     }
 
+    @GetMapping("/api/v4/orders")
+    public List<OrderQueryDto> ordersV4() {
+        return orderQueryRepository.findOrderQueryDtos();
+    }
+
+    @GetMapping("/api/v5/orders")
+    public List<OrderQueryDto> ordersV5() {
+        return orderQueryRepository.findAllByDto_optimization();
+    }
+
     @Data
     static class OrderDto {
 
@@ -79,8 +89,8 @@ public class OrderApiController {
         private LocalDateTime orderDate;
         private OrderStatus orderStatus;
         private Address address;
-        private List<OrderItemDto> orderItems;
 
+        private List<OrderItemDto> orderItems;
         public OrderDto(Order order) {
             orderId = order.getId();
             name = order.getMember().getName();
@@ -91,12 +101,9 @@ public class OrderApiController {
                     .map(OrderItemDto::new)
                     .collect(Collectors.toList());
         }
+
     }
 
-    @GetMapping("/api/v4/orders")
-    public List<OrderQueryDto> ordersV4() {
-        return orderQueryRepository.findOrderQueryDtos();
-    }
     @Getter
     static class OrderItemDto {
 

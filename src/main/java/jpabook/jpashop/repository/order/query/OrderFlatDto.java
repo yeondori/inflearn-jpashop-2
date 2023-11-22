@@ -11,8 +11,8 @@ public class OrderFlatDto {
     private Long orderId;
     private String name;
     private LocalDateTime orderDate;
-    private OrderStatus orderStatus;
     private Address address;
+    private OrderStatus orderStatus;
 
     private String itemName;
     private int orderPrice;

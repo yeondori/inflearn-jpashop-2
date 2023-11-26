@@ -20,7 +20,11 @@
 섹션을 클릭하면 해당 강의 내용으로 이동할 수 있다.
 
 [섹션 1. API 개발 기본](docs/section01.md)
+
 [섹션 2. API 개발 고급 - 준비](docs/section02.md)
+
 [섹션 3. API 개발 고급 - 지연 로딩과 조회 성능 최적화](docs/section03.md)
+
 [섹션 4. API 개발 고급 - 컬렉션 조회 최적화](docs/section04.md)
+
 [섹션 5. API 개발 고급 - 실무 필수 최적화](docs/section05.md)
